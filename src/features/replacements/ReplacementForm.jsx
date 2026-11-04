@@ -1,5 +1,6 @@
 import Button from '../../components/ui/Button.jsx';
 import Field from '../../components/ui/Field.jsx';
+import FieldRow from '../../components/ui/FieldRow.jsx';
 import FormStatus from '../../components/ui/FormStatus.jsx';
 import { CONSUMABLE_TYPES } from '../../data/consumables.js';
 import { useForm } from '../../hooks/useForm.js';
@@ -28,7 +29,7 @@ export default function ReplacementForm({ onAdd }) {
   });
 
   return (
-    <form className="form-stack" onSubmit={form.handleSubmit}>
+    <form className="flex flex-col gap-4" onSubmit={form.handleSubmit}>
       <Field id="replacementType" label="소모품 종류" as="select" {...form.bind('type')}>
         {CONSUMABLE_TYPES.map((type) => (
           <option key={type} value={type}>
@@ -44,7 +45,7 @@ export default function ReplacementForm({ onAdd }) {
         required
         {...form.bind('product')}
       />
-      <div className="field-row">
+      <FieldRow>
         <Field id="replacementDate" label="교체일" type="date" required {...form.bind('date')} />
         <Field
           id="replacementKm"
@@ -56,7 +57,7 @@ export default function ReplacementForm({ onAdd }) {
           required
           {...form.bind('km')}
         />
-      </div>
+      </FieldRow>
       <Field
         id="replacementMemo"
         label="메모 (선택)"

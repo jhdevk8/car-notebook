@@ -2,18 +2,20 @@ import { formatDate } from '../../utils/format.js';
 
 export default function ConsumableList({ groups, selectedType, onSelect }) {
   return (
-    <ul className="consumable-list">
+    <ul>
       {groups.map(({ type, count, last }) => (
         <li key={type}>
           <button
             type="button"
-            className="consumable-row"
+            className="grid min-h-14 w-full grid-cols-[minmax(0,1fr)_auto] gap-x-3 border-t border-line px-3 py-[11px] text-left hover:bg-bg aria-pressed:bg-accent-soft"
             aria-pressed={type === selectedType}
             onClick={() => onSelect(type)}
           >
-            <span className="consumable-name">{type}</span>
-            <span className="consumable-date">{formatDate(last.date)}</span>
-            <span className="consumable-count">{count}회</span>
+            <span className="font-bold">{type}</span>
+            <span className="row-start-2 text-[0.85rem] text-muted tabular-nums">{formatDate(last.date)}</span>
+            <span className="col-start-2 row-span-2 row-start-1 self-center font-num text-[1.15rem] font-semibold">
+              {count}회
+            </span>
           </button>
         </li>
       ))}

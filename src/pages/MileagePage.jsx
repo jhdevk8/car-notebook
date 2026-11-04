@@ -1,3 +1,4 @@
+import TwoColumn from '../components/layout/TwoColumn.jsx';
 import Panel from '../components/ui/Panel.jsx';
 import StatList from '../components/ui/StatList.jsx';
 import MileageForm from '../features/mileage/MileageForm.jsx';
@@ -9,7 +10,7 @@ export default function MileagePage({ logs, onAdd, onDelete }) {
   const total = getTotal(logs);
 
   return (
-    <div className="split">
+    <TwoColumn>
       <Panel>
         <h1>주행거리 기록</h1>
         <MileageForm logs={logs} onAdd={onAdd} />
@@ -27,6 +28,6 @@ export default function MileagePage({ logs, onAdd, onDelete }) {
         <h2>구간별 주행거리</h2>
         <MileageTable logs={logs} onDelete={onDelete} />
       </Panel>
-    </div>
+    </TwoColumn>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TwoColumn from '../components/layout/TwoColumn.jsx';
 import Button from '../components/ui/Button.jsx';
 import EmptyState from '../components/ui/EmptyState.jsx';
 import Panel from '../components/ui/Panel.jsx';
@@ -16,12 +17,12 @@ export default function Dashboard({ data }) {
 
   if (groups.length === 0) {
     return (
-      <div className="page-stack">
+      <div className="flex flex-col gap-5">
         <RecordSummary data={data} />
-        <Panel className="dashboard-empty">
+        <Panel className="max-w-[560px] items-start">
           <h1>대시보드</h1>
           <EmptyState>교체 기록을 추가하면 소모품별 횟수와 이력이 여기에 나타나요.</EmptyState>
-          <Button variant="primary" onClick={() => navigate('/replacements')}>
+          <Button variant="primary" fullWidth={false} onClick={() => navigate('/replacements')}>
             교체 기록 추가
           </Button>
         </Panel>
@@ -33,18 +34,18 @@ export default function Dashboard({ data }) {
   const selected = groups.find(({ type }) => type === selectedType) ?? groups[0];
 
   return (
-    <div className="page-stack">
+    <div className="flex flex-col gap-5">
       <RecordSummary data={data} />
-      <div className="dashboard">
+      <TwoColumn layout="list">
         <Panel>
           <h1>대시보드</h1>
-          <p className="dashboard-summary">
+          <p className="-mt-2.5 text-muted">
             {groups.length}종 · 총 {data.replacements.length}회 교체
           </p>
           <ConsumableList groups={groups} selectedType={selected.type} onSelect={setSelectedType} />
         </Panel>
         <ConsumableDetail group={selected} currentKm={getCurrentKm(data)} />
-      </div>
+      </TwoColumn>
     </div>
   );
 }

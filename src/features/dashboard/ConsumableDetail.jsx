@@ -7,8 +7,8 @@ export default function ConsumableDetail({ group, currentKm }) {
   const { type, count, last, items } = group;
 
   return (
-    <Panel className="consumable-detail" aria-label={`${type} 상세`}>
-      <ModelStage title={type} className="stage-detail" />
+    <Panel aria-label={`${type} 상세`}>
+      <ModelStage title={type} />
 
       <StatList
         items={[
@@ -19,12 +19,15 @@ export default function ConsumableDetail({ group, currentKm }) {
       />
 
       <h2>교체 이력</h2>
-      <ol className="timeline">
+      <ol>
         {items.map((item) => (
-          <li key={item.id}>
-            <span className="timeline-date">{formatDate(item.date)}</span>
-            <span>{item.product}</span>
-            <span className="timeline-km">{formatKm(item.km)}</span>
+          <li
+            key={item.id}
+            className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3.5 gap-y-1 border-t border-line py-2.5 tabular-nums sm:grid-cols-[auto_minmax(0,1fr)_auto]"
+          >
+            <span className="text-muted">{formatDate(item.date)}</span>
+            <span className="col-span-2 row-start-2 sm:col-auto sm:row-auto">{item.product}</span>
+            <span className="text-muted">{formatKm(item.km)}</span>
           </li>
         ))}
       </ol>

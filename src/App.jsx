@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import CarNotebook from './CarNotebook.jsx';
+import StatusMessage from './components/ui/StatusMessage.jsx';
 import { EMPTY_RECORDS } from './data/emptyRecords.js';
 import LoginPage from './features/auth/LoginPage.jsx';
 import { useAuth } from './hooks/useAuth.js';
@@ -24,7 +25,7 @@ export default function App() {
     [userId]
   );
 
-  if (isLoading) return <p className="status-message">불러오는 중…</p>;
+  if (isLoading) return <StatusMessage>불러오는 중…</StatusMessage>;
 
   const notebook = userId ? (
     <CarNotebook

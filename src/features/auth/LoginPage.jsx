@@ -28,10 +28,10 @@ export default function LoginPage({ onBack }) {
   });
 
   return (
-    <div className="auth-page">
-      <Panel as="form" className="auth-panel" onSubmit={form.handleSubmit}>
+    <div className="page-gutter grid place-items-center py-12">
+      <Panel as="form" className="w-full max-w-[400px]" onSubmit={form.handleSubmit}>
         <div>
-          <p className="eyebrow">내 차 수첩</p>
+          <p className="text-[0.8rem] font-medium tracking-[0.04em] text-muted">내 차 수첩</p>
           <h1>{isSignUp ? '계정 만들기' : '로그인'}</h1>
         </div>
 
@@ -51,7 +51,7 @@ export default function LoginPage({ onBack }) {
         </Button>
         <FormStatus error={form.error} message={form.message} />
 
-        <div className="auth-links">
+        <div className="flex flex-wrap justify-between gap-x-4 gap-y-2 text-[0.9rem]">
           {SIGNUP_ENABLED && (
             <Button variant="text" onClick={() => setIsSignUp((prev) => !prev)}>
               {isSignUp ? '이미 계정이 있어요' : '계정 만들기'}

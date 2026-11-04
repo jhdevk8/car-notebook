@@ -1,7 +1,7 @@
 export default function FormStatus({ error, message }) {
   if (error) {
     return (
-      <p className="form-error" role="alert">
+      <p className="text-[0.9rem] text-danger" role="alert">
         {error}
       </p>
     );
@@ -9,7 +9,7 @@ export default function FormStatus({ error, message }) {
 
   if (message) {
     return (
-      <p className="form-message" role="status">
+      <p className="text-[0.9rem] text-success" role="status">
         {message}
       </p>
     );

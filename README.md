@@ -13,7 +13,7 @@
 
 ## 기술
 
-React, React Router, Vite, Supabase(PostgreSQL, Auth), CSS
+React, React Router, Vite, Tailwind CSS, Supabase(PostgreSQL, Auth)
 
 ## 실행
 
@@ -61,6 +61,7 @@ src/
 ├── repositories/          # 저장 방식 (Supabase, localStorage), 오류 문구 변환
 ├── hooks/                 # useAuth, useCarRecords, useForm, useGuestImport
 ├── utils/                 # 주행거리 계산, 소모품 묶기, 백업 검증, 날짜·거리 표시
+├── styles.css             # 색상 값(라이트, 다크), Tailwind 테마, 기본 스타일
 ├── components/ui/         # Button, Field, Panel, StatList, DeleteButton 등 공통 UI
 ├── components/layout/     # 상단 메뉴, 알림 띠
 ├── components/            # ModelStage(3D 자리), Odometer

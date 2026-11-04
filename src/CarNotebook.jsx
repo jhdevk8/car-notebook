@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AppShell from './components/layout/AppShell.jsx';
 import Button from './components/ui/Button.jsx';
+import StatusMessage from './components/ui/StatusMessage.jsx';
 import { useCarRecords } from './hooks/useCarRecords.js';
 import { useGuestImport } from './hooks/useGuestImport.js';
 import BackupPage from './pages/BackupPage.jsx';
@@ -39,16 +40,16 @@ export default function CarNotebook({ repository, account, guestRepository, base
 
   return (
     <AppShell pages={PAGES} account={account} notices={notices}>
-      {!data && !records.loadError && <p className="status-message">기록을 불러오는 중…</p>}
+      {!data && !records.loadError && <StatusMessage>기록을 불러오는 중…</StatusMessage>}
 
       {/* 불러오기에 실패하면 빈 화면을 보여 주지 않는다. 기록이 사라진 것처럼 보이기 때문이다. */}
       {!data && records.loadError && (
-        <div className="status-message" role="alert">
+        <StatusMessage role="alert">
           <p>{records.loadError}</p>
           <Button variant="text" onClick={records.refresh}>
             다시 시도
           </Button>
-        </div>
+        </StatusMessage>
       )}
 
       {data && (

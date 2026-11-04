@@ -20,10 +20,11 @@ export default function VehicleNameField({ value, onSave }) {
   };
 
   return (
-    <label className="vehicle-field" htmlFor="vehicleName">
-      <span className="eyebrow">내 차</span>
+    <label className="flex flex-col items-center gap-0.5" htmlFor="vehicleName">
+      <span className="text-[0.8rem] font-medium tracking-[0.04em] text-muted">내 차</span>
       <input
         id="vehicleName"
+        className="w-full max-w-[420px] border-b border-transparent bg-transparent text-center text-[1.45rem] font-bold hover:border-line focus:border-line focus:outline-none"
         type="text"
         value={draft}
         placeholder="차종 입력 (예: 14년식 LPG K5)"
@@ -32,7 +33,7 @@ export default function VehicleNameField({ value, onSave }) {
         onKeyDown={(event) => event.key === 'Enter' && event.target.blur()}
       />
       {error && (
-        <span className="form-error" role="alert">
+        <span className="text-[0.9rem] text-danger" role="alert">
           {error}
         </span>
       )}

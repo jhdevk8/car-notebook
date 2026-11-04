@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '../../components/ui/Button.jsx';
+import Callout from '../../components/ui/Callout.jsx';
 import Field from '../../components/ui/Field.jsx';
 import FormStatus from '../../components/ui/FormStatus.jsx';
 import { parseBackup } from '../../utils/backup.js';
@@ -38,14 +39,14 @@ export default function BackupRestore({ onRestore }) {
   };
 
   return (
-    <div className="form-stack">
+    <div className="flex flex-col gap-4">
       <Field id="backupFile" label="백업 파일 선택" type="file" accept="application/json,.json" onChange={handleFile} />
       {backup && (
         <>
-          <p className="calc-preview">
+          <Callout>
             주행거리 {backup.logs.length}건, 교체 {backup.replacements.length}건을 합칩니다. 같은 날짜의 주행거리는
             지금 기록을 유지하고, 같은 교체 기록은 백업 내용으로 되돌려요.
-          </p>
+          </Callout>
           <Button onClick={handleRestore} disabled={isRestoring}>
             {isRestoring ? '복원 중…' : '복원하기'}
           </Button>

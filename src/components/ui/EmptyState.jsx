@@ -1,3 +1,3 @@
 export default function EmptyState({ children }) {
-  return <p className="empty">{children}</p>;
+  return <p className="py-6 text-muted">{children}</p>;
 }

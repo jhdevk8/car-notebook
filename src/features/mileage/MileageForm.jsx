@@ -1,5 +1,7 @@
 import Button from '../../components/ui/Button.jsx';
+import Callout from '../../components/ui/Callout.jsx';
 import Field from '../../components/ui/Field.jsx';
+import FieldRow from '../../components/ui/FieldRow.jsx';
 import FormStatus from '../../components/ui/FormStatus.jsx';
 import { useForm } from '../../hooks/useForm.js';
 import { formatDate, formatKm, today } from '../../utils/format.js';
@@ -22,8 +24,8 @@ export default function MileageForm({ logs, onAdd }) {
   const preview = previous && km !== '' ? calcInterval(previous, { date, km: Number(km) }) : null;
 
   return (
-    <form className="form-stack" onSubmit={form.handleSubmit}>
-      <div className="field-row">
+    <form className="flex flex-col gap-4" onSubmit={form.handleSubmit}>
+      <FieldRow>
         <Field id="logDate" label="날짜" type="date" required {...form.bind('date')} />
         <Field
           id="logKm"
@@ -35,16 +37,16 @@ export default function MileageForm({ logs, onAdd }) {
           required
           {...form.bind('km')}
         />
-      </div>
+      </FieldRow>
 
       {preview && preview.km >= 0 && (
-        <p className="calc-preview">
+        <Callout>
           {formatDate(previous.date)} 기록과 비교하면{' '}
           <strong>
             {preview.days}일 동안 {formatKm(preview.km)}
           </strong>{' '}
           · 하루 평균 {formatKm(preview.perDay)}
-        </p>
+        </Callout>
       )}
 
       <Button type="submit" variant="primary" disabled={form.isSubmitting}>
