@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from '../../components/ui/Button.jsx';
 import Field from '../../components/ui/Field.jsx';
 import FormStatus from '../../components/ui/FormStatus.jsx';
+import { BrandMark } from '../../components/ui/Icon.jsx';
 import Panel from '../../components/ui/Panel.jsx';
 import { SIGNUP_ENABLED } from '../../config/auth.js';
 import { useForm } from '../../hooks/useForm.js';
@@ -28,10 +29,10 @@ export default function LoginPage({ onBack }) {
   });
 
   return (
-    <div className="page-gutter grid place-items-center py-12">
+    <div className="page-gutter grid min-h-dvh place-items-center py-12">
       <Panel as="form" className="w-full max-w-[400px]" onSubmit={form.handleSubmit}>
-        <div>
-          <p className="text-[0.8rem] font-medium tracking-[0.04em] text-muted">내 차 수첩</p>
+        <div className="flex flex-col gap-3">
+          <BrandMark />
           <h1>{isSignUp ? '계정 만들기' : '로그인'}</h1>
         </div>
 

@@ -1,58 +1,69 @@
 @import "tailwindcss";
 
-/* 색상 값. 라이트와 다크에서 값만 바뀌고, 화면에서는 bg-surface 같은 클래스로 쓴다. */
+/* 색상 값. 라이트와 다크에서 값만 바뀌고, 화면에서는 bg-surface 같은 클래스로 쓴다.
+   방향: 새벽 하늘 같은 라벤더·핑크 오로라 위에 반투명 유리 카드. */
 :root {
-  --bg: #e9edef;
-  --surface: #f6f8f9;
-  --ink: #15212a;
-  --muted: #55656e;
-  --line: #c6d0d5;
-  --accent: #0b5f78;
+  --bg: #f4f2fc;
+  --surface: rgb(255 255 255 / 0.72);
+  --surface-2: rgb(243 240 255 / 0.85);
+  --ink: #1d1b2e;
+  --muted: #6b6880;
+  --line: rgb(110 96 190 / 0.16);
+  --accent: #6a5af9;
+  --accent-2: #c447d6;
   --accent-fg: #ffffff;
-  --accent-soft: #d5e6ec;
-  --stage: #dce3e6;
-  --danger: #b3261e;
-  --danger-soft: #f6dcd9;
-  --success: #1b6e45;
-  --drum: #12191e;
-  --drum-fg: #f4f6f7;
-  --drum-last: #f0a81c;
-  --drum-last-fg: #1a1205;
+  --accent-soft: rgb(106 90 249 / 0.12);
+  --danger: #c0264b;
+  --danger-soft: rgb(225 60 100 / 0.12);
+  --success: #128a63;
+  --drum: #1d1838;
+  --drum-fg: #f1eeff;
+  --aurora-1: rgb(196 181 253 / 0.55);
+  --aurora-2: rgb(165 216 255 / 0.5);
+  --aurora-3: rgb(251 207 232 / 0.55);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --bg: #10171c;
-    --surface: #182229;
-    --ink: #e8eef1;
-    --muted: #9aa9b2;
-    --line: #2c3a43;
-    --accent: #5eb8d3;
-    --accent-fg: #08222b;
-    --accent-soft: #1b3743;
-    --stage: #141d23;
-    --danger: #ff8a80;
-    --danger-soft: #3b1d1b;
-    --success: #6fd3a0;
-    --drum: #05090c;
+    --bg: #0c0b1a;
+    --surface: rgb(30 27 58 / 0.62);
+    --surface-2: rgb(255 255 255 / 0.06);
+    --ink: #eeeaff;
+    --muted: #a7a2c4;
+    --line: rgb(255 255 255 / 0.1);
+    --accent: #b4a7ff;
+    --accent-2: #f0abfc;
+    --accent-fg: #160f33;
+    --accent-soft: rgb(180 167 255 / 0.16);
+    --danger: #ff8fa8;
+    --danger-soft: rgb(255 120 150 / 0.14);
+    --success: #6fe0b4;
+    --drum: #07061a;
+    --aurora-1: rgb(109 40 217 / 0.35);
+    --aurora-2: rgb(30 64 175 / 0.3);
+    --aurora-3: rgb(190 24 93 / 0.25);
     color-scheme: dark;
   }
 }
 
 :root[data-theme='dark'] {
-  --bg: #10171c;
-  --surface: #182229;
-  --ink: #e8eef1;
-  --muted: #9aa9b2;
-  --line: #2c3a43;
-  --accent: #5eb8d3;
-  --accent-fg: #08222b;
-  --accent-soft: #1b3743;
-  --stage: #141d23;
-  --danger: #ff8a80;
-  --danger-soft: #3b1d1b;
-  --success: #6fd3a0;
-  --drum: #05090c;
+  --bg: #0c0b1a;
+  --surface: rgb(30 27 58 / 0.62);
+  --surface-2: rgb(255 255 255 / 0.06);
+  --ink: #eeeaff;
+  --muted: #a7a2c4;
+  --line: rgb(255 255 255 / 0.1);
+  --accent: #b4a7ff;
+  --accent-2: #f0abfc;
+  --accent-fg: #160f33;
+  --accent-soft: rgb(180 167 255 / 0.16);
+  --danger: #ff8fa8;
+  --danger-soft: rgb(255 120 150 / 0.14);
+  --success: #6fe0b4;
+  --drum: #07061a;
+  --aurora-1: rgb(109 40 217 / 0.35);
+  --aurora-2: rgb(30 64 175 / 0.3);
+  --aurora-3: rgb(190 24 93 / 0.25);
   color-scheme: dark;
 }
 
@@ -63,17 +74,16 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
-  --color-stage: var(--stage);
+  --color-surface-2: var(--surface-2);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
   --color-success: var(--success);
   --color-drum: var(--drum);
   --color-drum-fg: var(--drum-fg);
-  --color-drum-last: var(--drum-last);
-  --color-drum-last-fg: var(--drum-last-fg);
-  --font-body: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-body: 'Pretendard Variable', Pretendard, 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --font-num: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
 }
 
@@ -85,7 +95,20 @@
 
 @layer base {
   body {
-    @apply bg-bg text-ink font-body text-[15px] leading-[1.55];
+    @apply bg-bg text-ink font-body text-[15px] leading-[1.55] antialiased;
+  }
+
+  /* 화면 뒤에 고정된 오로라 배경 */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(42% 38% at 12% 8%, var(--aurora-1), transparent 70%),
+      radial-gradient(40% 36% at 92% 14%, var(--aurora-2), transparent 70%),
+      radial-gradient(48% 42% at 70% 96%, var(--aurora-3), transparent 70%);
   }
 
   h1 {

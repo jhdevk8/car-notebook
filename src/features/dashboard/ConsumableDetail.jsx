@@ -19,15 +19,16 @@ export default function ConsumableDetail({ group, currentKm }) {
       />
 
       <h2>교체 이력</h2>
-      <ol>
+      <ol className="ml-1.5 flex flex-col">
         {items.map((item) => (
           <li
             key={item.id}
-            className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3.5 gap-y-1 border-t border-line py-2.5 tabular-nums sm:grid-cols-[auto_minmax(0,1fr)_auto]"
+            className="relative grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-0.5 border-l-2 border-line pb-4 pl-5 tabular-nums last:border-l-transparent last:pb-0"
           >
-            <span className="text-muted">{formatDate(item.date)}</span>
-            <span className="col-span-2 row-start-2 sm:col-auto sm:row-auto">{item.product}</span>
+            <span className="absolute top-1 -left-[7px] size-3 rounded-full border-2 border-surface bg-accent" />
+            <span className="font-semibold wrap-anywhere">{item.product}</span>
             <span className="text-muted">{formatKm(item.km)}</span>
+            <span className="col-span-2 text-[0.85rem] text-muted">{formatDate(item.date)}</span>
           </li>
         ))}
       </ol>

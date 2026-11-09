@@ -32,14 +32,14 @@ export default function App() {
       key={userId}
       repository={accountRepository}
       guestRepository={guestRepository}
-      account={{ label: '로그아웃', onClick: signOut }}
+      account={{ label: '로그아웃', icon: 'logout', onClick: signOut }}
     />
   ) : (
     <CarNotebook
       key="guest"
       repository={guestRepository}
       baseNotices={[GUEST_NOTICE]}
-      account={isSupabaseConfigured ? { label: '로그인', onClick: () => navigate('/login') } : null}
+      account={isSupabaseConfigured ? { label: '로그인', icon: 'user', onClick: () => navigate('/login') } : null}
     />
   );
 

@@ -4,7 +4,7 @@ import { formatDate, formatKm } from '../../utils/format.js';
 import { buildRows } from '../../utils/mileage.js';
 
 const HEAD = 'px-2 py-2.5 text-right text-[0.8rem] font-medium text-muted';
-const CELL = 'whitespace-nowrap sm:table-cell sm:border-t sm:border-line sm:px-2 sm:py-2.5 sm:text-right';
+const CELL = 'whitespace-nowrap sm:table-cell sm:border-t sm:border-line sm:px-2 sm:py-3 sm:text-right';
 // 폰에서는 표 머리글이 숨겨져서, 칸마다 data-label을 작은 제목으로 보여 준다.
 const LABELED = `${CELL} before:block before:text-[0.8rem] before:font-normal before:text-muted before:content-[attr(data-label)] sm:before:hidden`;
 
@@ -37,9 +37,9 @@ export default function MileageTable({ logs, onDelete }) {
           </th>
         </tr>
       </thead>
-      <tbody className="block sm:table-row-group">
+      <tbody className="flex flex-col gap-2 sm:table-row-group">
         {buildRows(logs).map(({ id, date, km, interval }) => (
-          <tr key={id} className="grid grid-cols-2 gap-x-3 gap-y-2 border-t border-line py-3 sm:table-row sm:p-0">
+          <tr key={id} className="grid grid-cols-2 gap-x-3 gap-y-2 rounded-2xl bg-surface-2 p-3.5 sm:table-row sm:rounded-none sm:bg-transparent sm:p-0">
             <td className={`${CELL} self-center font-bold sm:pl-0 sm:text-left sm:font-normal`}>{formatDate(date)}</td>
             <td className={LABELED} data-label="계기판">
               {formatKm(km)}

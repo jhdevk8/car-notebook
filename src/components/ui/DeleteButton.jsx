@@ -20,12 +20,12 @@ export default function DeleteButton({ onDelete, label }) {
     }
   };
 
-  const tone = step === 'idle' ? 'border-transparent text-muted hover:border-line' : 'border-danger text-danger';
+  const tone = step === 'idle' ? 'text-muted hover:bg-surface hover:text-ink' : 'bg-danger-soft text-danger';
 
   return (
     <button
       type="button"
-      className={`min-h-10 whitespace-nowrap rounded-sm border px-2.5 py-[3px] text-[0.82rem] sm:min-h-0 sm:px-[7px] ${tone}`}
+      className={`min-h-9 whitespace-nowrap rounded-lg px-2.5 text-[0.8rem] font-semibold transition ${tone}`}
       aria-label={`${label} ${TEXT[step]}`}
       disabled={step === 'deleting'}
       onClick={handleClick}

@@ -1,3 +1,3 @@
 export default function Callout({ children }) {
-  return <p className="rounded bg-accent-soft px-3 py-2.5 text-[0.92rem]">{children}</p>;
+  return <p className="rounded-2xl bg-accent-soft px-3.5 py-3 text-[0.9rem]">{children}</p>;
 }

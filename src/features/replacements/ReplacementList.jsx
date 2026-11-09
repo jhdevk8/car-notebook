@@ -9,23 +9,23 @@ export default function ReplacementList({ replacements, onDelete }) {
   }
 
   return (
-    <ul>
+    <ul className="flex flex-col gap-2">
       {sortByLatest(replacements).map((item) => (
         <li
           key={item.id}
-          className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3.5 gap-y-1 border-t border-line py-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]"
+          className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 gap-y-2 rounded-2xl bg-surface-2 p-3.5"
         >
-          <div className="flex min-w-0 flex-col">
-            <strong>{item.type}</strong>
-            <span>{item.product}</span>
+          <div className="flex min-w-0 flex-col gap-1">
+            <span className="self-start rounded-full bg-accent-soft px-2 py-0.5 text-[0.75rem] font-semibold text-accent">
+              {item.type}
+            </span>
+            <strong className="wrap-anywhere">{item.product}</strong>
             {item.memo && <span className="text-[0.85rem] text-muted">{item.memo}</span>}
           </div>
-          <div className="col-start-1 flex gap-2.5 text-[0.88rem] text-muted tabular-nums sm:col-auto sm:flex-col sm:gap-0 sm:text-right">
+          <DeleteButton label={`${item.type} 기록`} onDelete={() => onDelete(item.id)} />
+          <div className="col-span-2 flex gap-3 text-[0.85rem] text-muted tabular-nums">
             <span>{formatDate(item.date)}</span>
             <span>{formatKm(item.km)}</span>
-          </div>
-          <div className="col-start-2 row-span-2 row-start-1 sm:col-auto sm:row-auto">
-            <DeleteButton label={`${item.type} 기록`} onDelete={() => onDelete(item.id)} />
           </div>
         </li>
       ))}

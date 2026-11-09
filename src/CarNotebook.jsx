@@ -11,11 +11,11 @@ import MileagePage from './pages/MileagePage.jsx';
 import ReplacementsPage from './pages/ReplacementsPage.jsx';
 
 const PAGES = [
-  { path: '/', label: '홈' },
-  { path: '/mileage', label: '주행거리' },
-  { path: '/replacements', label: '소모품' },
-  { path: '/dashboard', label: '대시보드' },
-  { path: '/backup', label: '백업', secondary: true },
+  { path: '/', label: '홈', icon: 'home' },
+  { path: '/mileage', label: '주행거리', icon: 'gauge' },
+  { path: '/replacements', label: '소모품', icon: 'wrench' },
+  { path: '/dashboard', label: '대시보드', icon: 'chart' },
+  { path: '/backup', label: '백업', icon: 'archive', secondary: true },
 ];
 
 // 기록을 불러와 각 페이지에 나눠 준다. 저장 방식은 repository가 결정한다.

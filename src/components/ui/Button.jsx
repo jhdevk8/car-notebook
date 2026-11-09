@@ -1,10 +1,11 @@
-const BOX = 'min-h-12 rounded border px-3.5 py-2.5 font-medium sm:min-h-0';
+const BOX =
+  'inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-4 py-2.5 font-semibold transition active:scale-[0.99] sm:min-h-11';
 
 const VARIANTS = {
-  default: `${BOX} border-line bg-transparent hover:border-accent hover:text-accent`,
-  primary: `${BOX} border-accent bg-accent text-accent-fg hover:brightness-110`,
-  text: 'text-left font-medium text-accent underline underline-offset-3',
-  dangerText: 'text-left font-medium text-danger underline underline-offset-3',
+  default: `${BOX} border border-line bg-surface text-ink backdrop-blur-xl hover:border-accent hover:text-accent`,
+  primary: `${BOX} bg-[linear-gradient(135deg,var(--accent),var(--accent-2))] text-accent-fg shadow-[0_8px_20px_-8px_var(--accent)] hover:brightness-110`,
+  text: 'text-left font-semibold text-accent underline-offset-4 hover:underline',
+  dangerText: 'text-left font-semibold text-danger underline-offset-4 hover:underline',
 };
 
 const isBox = (variant) => variant === 'default' || variant === 'primary';

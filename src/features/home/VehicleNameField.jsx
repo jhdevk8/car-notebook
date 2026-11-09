@@ -20,14 +20,14 @@ export default function VehicleNameField({ value, onSave }) {
   };
 
   return (
-    <label className="flex flex-col items-center gap-0.5" htmlFor="vehicleName">
-      <span className="text-[0.8rem] font-medium tracking-[0.04em] text-muted">내 차</span>
+    <label className="flex flex-col gap-1" htmlFor="vehicleName">
+      <span className="self-start bg-[linear-gradient(135deg,var(--accent),var(--accent-2))] bg-clip-text text-[0.75rem] font-bold tracking-[0.12em] text-transparent">MY CAR</span>
       <input
         id="vehicleName"
-        className="w-full max-w-[420px] border-b border-transparent bg-transparent text-center text-[1.45rem] font-bold hover:border-line focus:border-line focus:outline-none"
+        className="w-full rounded-lg border border-transparent bg-transparent py-0.5 text-[1.6rem] leading-tight font-bold placeholder:text-muted/60 hover:border-line focus:border-accent focus:outline-none sm:text-[1.9rem]"
         type="text"
         value={draft}
-        placeholder="차종 입력 (예: 14년식 LPG K5)"
+        placeholder="차종 입력 (예: 14년식 K5)"
         onChange={(event) => setDraft(event.target.value)}
         onBlur={handleBlur}
         onKeyDown={(event) => event.key === 'Enter' && event.target.blur()}
