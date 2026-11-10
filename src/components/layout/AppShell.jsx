@@ -36,7 +36,7 @@ export default function AppShell({ pages, account, notices, children }) {
 
   return (
     <div className="min-h-dvh">
-      <header className="sticky top-0 z-20 border-b border-line bg-bg/60 backdrop-blur-xl">
+      <header className="sticky top-0 z-20 border-b border-line bg-bg/60 pt-[env(safe-area-inset-top,0px)] backdrop-blur-xl">
         <div className={`${CONTAINER} flex h-14 items-center gap-4`}>
           <Link className="flex items-center gap-2 whitespace-nowrap text-[1.02rem] font-bold" to="/">
             <BrandMark />

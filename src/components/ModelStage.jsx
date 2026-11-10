@@ -1,4 +1,9 @@
-// 3D 모델이 들어갈 자리. 사용할 도구를 정하면 이 컴포넌트 안만 바꾸면 된다.
+import { Component, lazy, Suspense } from 'react';
+
+// 3D 라이브러리는 용량이 커서 홈에서 필요할 때만 불러온다.
+const CarScene = lazy(() => import('./car/CarScene.jsx'));
+
+// 3D를 불러오는 동안이나 실패했을 때 보여 줄 차 그림
 function CarOutline() {
   return (
     <svg
@@ -17,17 +22,58 @@ function CarOutline() {
   );
 }
 
+// WebGL을 쓸 수 없는 기기에서는 3D 대신 그림을 보여 준다.
+class SceneBoundary extends Component {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    return this.state.failed ? this.props.fallback : this.props.children;
+  }
+}
+
+const GLOW =
+  'bg-[radial-gradient(45%_55%_at_32%_45%,color-mix(in_oklab,var(--accent)_22%,transparent),transparent),radial-gradient(45%_55%_at_70%_62%,color-mix(in_oklab,var(--accent-2)_20%,transparent),transparent)]';
+
 const SIZES = {
-  home: 'h-[clamp(200px,34vh,320px)] sm:h-[clamp(260px,40vh,400px)]',
+  home: 'h-[clamp(240px,40vh,360px)] sm:h-[clamp(300px,46vh,440px)]',
   detail: 'h-[clamp(190px,28vh,280px)] rounded-3xl border border-line',
 };
 
+const CENTER = 'absolute inset-0 flex items-center justify-center';
+
 export default function ModelStage({ title, showCar = false, size = 'detail' }) {
+  if (showCar) {
+    const fallback = (
+      <div className={CENTER}>
+        <CarOutline />
+      </div>
+    );
+
+    return (
+      <div className={`relative max-w-full overflow-hidden text-ink ${GLOW} ${SIZES[size]}`}>
+        <SceneBoundary fallback={fallback}>
+          <Suspense fallback={fallback}>
+            <div className="absolute inset-0">
+              <CarScene />
+            </div>
+          </Suspense>
+        </SceneBoundary>
+        <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-line bg-surface px-3 py-1 text-[0.75rem] font-medium text-muted backdrop-blur-xl">
+          끌어서 돌려 보고, 꾹 눌러 보세요
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`flex max-w-full flex-col items-center justify-center gap-4 overflow-hidden bg-[radial-gradient(45%_55%_at_32%_45%,color-mix(in_oklab,var(--accent)_22%,transparent),transparent),radial-gradient(45%_55%_at_70%_62%,color-mix(in_oklab,var(--accent-2)_20%,transparent),transparent)] p-5 text-center text-ink ${SIZES[size]}`}
+      className={`flex max-w-full flex-col items-center justify-center gap-4 overflow-hidden p-5 text-center text-ink ${GLOW} ${SIZES[size]}`}
     >
-      {showCar ? <CarOutline /> : <strong className="text-[clamp(1.6rem,5vw,2.2rem)] font-bold">{title}</strong>}
+      <strong className="text-[clamp(1.6rem,5vw,2.2rem)] font-bold">{title}</strong>
       <span className="rounded-full border border-line bg-surface/80 px-2.5 py-1 text-[0.75rem] font-medium text-muted">
         3D 모델 자리
       </span>
