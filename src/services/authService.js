@@ -8,6 +8,8 @@ const AUTH_ERROR_MESSAGES = {
   weak_password: '비밀번호를 더 길고 복잡하게 만들어 주세요.',
   signup_disabled: '새 계정 만들기가 꺼져 있어요.',
   over_email_send_rate_limit: '메일을 너무 많이 보냈어요. 잠시 후 다시 시도해 주세요.',
+  otp_expired: '링크가 만료됐어요. 재설정 메일을 다시 받아 주세요.',
+  same_password: '이전과 다른 비밀번호를 써 주세요.',
 };
 
 const unwrap = ({ data, error }) => {
@@ -38,6 +40,15 @@ export const signUp = async ({ email, password }) => {
     })
   );
   return !session;
+};
+
+// 비밀번호 재설정 링크를 메일로 보낸다. 링크를 누르면 앱이 새 비밀번호 화면을 띄운다.
+export const sendPasswordResetLink = async (email) => {
+  unwrap(await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin }));
+};
+
+export const updatePassword = async (password) => {
+  unwrap(await supabase.auth.updateUser({ password }));
 };
 
 export const signOut = async () => {

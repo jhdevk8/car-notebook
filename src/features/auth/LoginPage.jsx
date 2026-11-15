@@ -7,11 +7,13 @@ import Panel from '../../components/ui/Panel.jsx';
 import { SIGNUP_ENABLED } from '../../config/auth.js';
 import { useForm } from '../../hooks/useForm.js';
 import { signIn, signUp } from '../../services/authService.js';
+import ResetPasswordForm from './ResetPasswordForm.jsx';
 
 const createInitialValues = () => ({ email: '', password: '' });
 
 export default function LoginPage({ onBack }) {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
 
   const form = useForm({
     initialValues: createInitialValues,
@@ -27,6 +29,20 @@ export default function LoginPage({ onBack }) {
       return needsConfirmation ? '메일의 확인 링크를 누른 뒤 로그인해 주세요.' : '';
     },
   });
+
+  if (isResetting) {
+    return (
+      <div className="page-gutter grid min-h-dvh place-items-center py-12">
+        <Panel className="w-full max-w-[400px]">
+          <div className="flex flex-col gap-3">
+            <BrandMark />
+            <h1>비밀번호 재설정</h1>
+          </div>
+          <ResetPasswordForm onCancel={() => setIsResetting(false)} />
+        </Panel>
+      </div>
+    );
+  }
 
   return (
     <div className="page-gutter grid min-h-dvh place-items-center py-12">
@@ -56,6 +72,11 @@ export default function LoginPage({ onBack }) {
           {SIGNUP_ENABLED && (
             <Button variant="text" onClick={() => setIsSignUp((prev) => !prev)}>
               {isSignUp ? '이미 계정이 있어요' : '계정 만들기'}
+            </Button>
+          )}
+          {!isSignUp && (
+            <Button variant="text" onClick={() => setIsResetting(true)}>
+              비밀번호를 잊었어요
             </Button>
           )}
           <Button variant="text" onClick={onBack}>
