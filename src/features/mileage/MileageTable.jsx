@@ -1,5 +1,5 @@
 import DeleteButton from '../../components/ui/DeleteButton.jsx';
-import EmptyState from '../../components/ui/EmptyState.jsx';
+import { EmptyState } from '../../components/ui/Panel.jsx';
 import { formatDate, formatKm } from '../../utils/format.js';
 import { buildRows } from '../../utils/mileage.js';
 

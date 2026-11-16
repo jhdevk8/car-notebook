@@ -1,6 +1,5 @@
 import ModelStage from '../../components/ModelStage.jsx';
-import Panel from '../../components/ui/Panel.jsx';
-import StatList from '../../components/ui/StatList.jsx';
+import Panel, { StatList } from '../../components/ui/Panel.jsx';
 import { formatDate, formatKm } from '../../utils/format.js';
 
 export default function ConsumableDetail({ group, currentKm }) {

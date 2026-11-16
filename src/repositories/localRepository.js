@@ -1,8 +1,10 @@
 const createId = () =>
   crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
 
+const EMPTY_RECORDS = { vehicle: '', logs: [], replacements: [] };
+
 // supabaseRepository와 같은 함수를 제공한다. 로그인하지 않았을 때 브라우저에 저장한다.
-export function createLocalRepository(storageKey, initialData) {
+export function createLocalRepository(storageKey, initialData = EMPTY_RECORDS) {
   let memory = initialData;
 
   const read = () => {

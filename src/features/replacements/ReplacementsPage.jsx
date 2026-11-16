@@ -1,9 +1,25 @@
 import DeleteButton from '../../components/ui/DeleteButton.jsx';
-import EmptyState from '../../components/ui/EmptyState.jsx';
+import Panel, { EmptyState, TwoColumn } from '../../components/ui/Panel.jsx';
 import { formatDate, formatKm } from '../../utils/format.js';
 import { sortByLatest } from '../../utils/replacements.js';
+import ReplacementForm from './ReplacementForm.jsx';
 
-export default function ReplacementList({ replacements, onDelete }) {
+export default function ReplacementsPage({ replacements, onAdd, onDelete }) {
+  return (
+    <TwoColumn>
+      <Panel>
+        <h1>소모품 교체 기록</h1>
+        <ReplacementForm onAdd={onAdd} />
+      </Panel>
+      <Panel>
+        <h2>교체 내역 {replacements.length}건</h2>
+        <ReplacementList replacements={replacements} onDelete={onDelete} />
+      </Panel>
+    </TwoColumn>
+  );
+}
+
+function ReplacementList({ replacements, onDelete }) {
   if (replacements.length === 0) {
     return <EmptyState>첫 교체 기록을 입력해 보세요.</EmptyState>;
   }

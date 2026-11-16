@@ -1,10 +1,8 @@
 import { useMemo } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import CarNotebook from './CarNotebook.jsx';
-import StatusMessage from './components/ui/StatusMessage.jsx';
-import { EMPTY_RECORDS } from './data/emptyRecords.js';
-import LoginPage from './features/auth/LoginPage.jsx';
-import NewPasswordPage from './features/auth/NewPasswordPage.jsx';
+import { StatusMessage } from './components/ui/Panel.jsx';
+import { LoginPage, NewPasswordPage } from './features/auth/AuthPages.jsx';
 import { useAuth } from './hooks/useAuth.js';
 import { isSupabaseConfigured, supabase } from './lib/supabaseClient.js';
 import { createLocalRepository } from './repositories/localRepository.js';
@@ -20,7 +18,7 @@ export default function App() {
   const navigate = useNavigate();
   const { userId, isLoading, isRecovering, finishRecovery } = useAuth();
 
-  const guestRepository = useMemo(() => createLocalRepository('car-notebook-guest', EMPTY_RECORDS), []);
+  const guestRepository = useMemo(() => createLocalRepository('car-notebook-guest'), []);
   const accountRepository = useMemo(
     () => (userId ? createSupabaseRepository(supabase, userId) : null),
     [userId]

@@ -12,3 +12,29 @@ export default function Field({ id, label, as: Control = 'input', children, ...c
     </label>
   );
 }
+
+// 입력칸 두 개를 PC에서는 나란히, 폰에서는 위아래로 놓는다.
+export function FieldRow({ children }) {
+  return <div className="grid gap-4 sm:grid-cols-2 sm:gap-3">{children}</div>;
+}
+
+// 폼 제출 결과 문구. 오류가 있으면 오류를 먼저 보여 준다.
+export function FormStatus({ error, message }) {
+  if (error) {
+    return (
+      <p className="text-[0.9rem] text-danger" role="alert">
+        {error}
+      </p>
+    );
+  }
+
+  if (message) {
+    return (
+      <p className="text-[0.9rem] text-success" role="status">
+        {message}
+      </p>
+    );
+  }
+
+  return null;
+}

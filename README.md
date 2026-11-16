@@ -30,14 +30,14 @@ npm run dev
 화면은 저장 방식을 모릅니다. `supabaseRepository`와 `localRepository`가 같은 함수를 제공하고, `App.jsx`가 로그인 상태에 따라 하나를 골라 넘깁니다.
 
 ```
-화면(pages, features) → useCarRecords → repository → Supabase 또는 localStorage
+화면(features) → useCarRecords → repository → Supabase 또는 localStorage
 ```
 
 ```
 src/
-├── pages/          # 화면
-├── features/       # 기능별 폼과 목록
+├── features/       # 기능별 화면 (홈, 주행거리, 소모품, 대시보드, 백업, 로그인)
 ├── components/     # 공통 UI, 레이아웃, 3D 차(car/)
+├── services/       # 로그인, 비밀번호 재설정
 ├── hooks/          # 기록 관리, 로그인, 폼 상태
 ├── repositories/   # 저장 방식 (Supabase, localStorage)
 └── utils/          # 주행거리 계산, 백업 검증

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import ModelStage from '../components/ModelStage.jsx';
-import Odometer from '../components/Odometer.jsx';
-import Icon from '../components/ui/Icon.jsx';
-import VehicleNameField from '../features/home/VehicleNameField.jsx';
-import { getCurrentKm } from '../utils/mileage.js';
+import ModelStage from '../../components/ModelStage.jsx';
+import Odometer from '../../components/Odometer.jsx';
+import Icon from '../../components/ui/Icon.jsx';
+import VehicleNameField from './VehicleNameField.jsx';
+import { getCurrentKm } from '../../utils/mileage.js';
 
-export default function Home({ data, onVehicleSave }) {
+export default function HomePage({ data, onVehicleSave }) {
   const km = getCurrentKm(data);
 
   return (

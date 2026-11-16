@@ -1,7 +1,5 @@
 import Button from '../../components/ui/Button.jsx';
-import Field from '../../components/ui/Field.jsx';
-import FieldRow from '../../components/ui/FieldRow.jsx';
-import FormStatus from '../../components/ui/FormStatus.jsx';
+import Field, { FieldRow, FormStatus } from '../../components/ui/Field.jsx';
 import { CONSUMABLE_TYPES } from '../../data/consumables.js';
 import { useForm } from '../../hooks/useForm.js';
 import { today } from '../../utils/format.js';

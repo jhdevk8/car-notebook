@@ -1,8 +1,6 @@
 import Button from '../../components/ui/Button.jsx';
-import Callout from '../../components/ui/Callout.jsx';
-import Field from '../../components/ui/Field.jsx';
-import FieldRow from '../../components/ui/FieldRow.jsx';
-import FormStatus from '../../components/ui/FormStatus.jsx';
+import Field, { FieldRow, FormStatus } from '../../components/ui/Field.jsx';
+import { Callout } from '../../components/ui/Panel.jsx';
 import { useForm } from '../../hooks/useForm.js';
 import { formatDate, formatKm, today } from '../../utils/format.js';
 import { calcInterval, findPreviousLog } from '../../utils/mileage.js';

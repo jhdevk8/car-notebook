@@ -1,11 +1,44 @@
 import { useState } from 'react';
 import Button from '../../components/ui/Button.jsx';
-import Callout from '../../components/ui/Callout.jsx';
-import Field from '../../components/ui/Field.jsx';
-import FormStatus from '../../components/ui/FormStatus.jsx';
-import { parseBackup } from '../../utils/backup.js';
+import Field, { FormStatus } from '../../components/ui/Field.jsx';
+import Panel, { Callout, TwoColumn } from '../../components/ui/Panel.jsx';
+import { buildBackup, getBackupFileName, parseBackup } from '../../utils/backup.js';
+import { today } from '../../utils/format.js';
 
-export default function BackupRestore({ onRestore }) {
+const HINT = 'text-[0.9rem] text-muted';
+
+export default function BackupPage({ data, onRestore }) {
+  return (
+    <TwoColumn layout="even">
+      <Panel>
+        <h1>백업 내려받기</h1>
+        <p className={HINT}>
+          주행거리 {data.logs.length}건과 교체 {data.replacements.length}건을 JSON 파일로 저장해요. 파일은 클라우드
+          드라이브처럼 다른 곳에도 보관해 두세요.
+        </p>
+        <Button variant="primary" onClick={() => downloadJson(buildBackup(data), getBackupFileName(today()))}>
+          백업 파일 내려받기
+        </Button>
+      </Panel>
+      <Panel>
+        <h2>백업에서 복원</h2>
+        <p className={HINT}>현재 기록을 지우지 않고 백업 내용을 합쳐요.</p>
+        <BackupRestore onRestore={onRestore} />
+      </Panel>
+    </TwoColumn>
+  );
+}
+
+const downloadJson = (content, fileName) => {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName;
+  link.click();
+  URL.revokeObjectURL(url);
+};
+
+function BackupRestore({ onRestore }) {
   const [backup, setBackup] = useState(null);
   const [isRestoring, setIsRestoring] = useState(false);
   const [error, setError] = useState('');

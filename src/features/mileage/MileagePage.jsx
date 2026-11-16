@@ -1,10 +1,8 @@
-import TwoColumn from '../components/layout/TwoColumn.jsx';
-import Panel from '../components/ui/Panel.jsx';
-import StatList from '../components/ui/StatList.jsx';
-import MileageForm from '../features/mileage/MileageForm.jsx';
-import MileageTable from '../features/mileage/MileageTable.jsx';
-import { formatKm } from '../utils/format.js';
-import { getTotal } from '../utils/mileage.js';
+import Panel, { StatList, TwoColumn } from '../../components/ui/Panel.jsx';
+import { formatKm } from '../../utils/format.js';
+import { getTotal } from '../../utils/mileage.js';
+import MileageForm from './MileageForm.jsx';
+import MileageTable from './MileageTable.jsx';
 
 export default function MileagePage({ logs, onAdd, onDelete }) {
   const total = getTotal(logs);
