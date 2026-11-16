@@ -10,3 +10,17 @@ export const CONSUMABLE_TYPES = [
   '와이퍼',
   '기타',
 ];
+
+// 권장 교체 주기. km와 개월 중 먼저 닿는 쪽을 기준으로 본다.
+// 일반적인 정비 안내 값이라 차종과 운전 습관에 따라 다를 수 있다.
+export const REPLACEMENT_INTERVALS = {
+  엔진오일: { km: 10000, months: 12 },
+  에어컨필터: { km: 10000, months: 6 },
+  에어필터: { km: 20000, months: 12 },
+  브레이크패드: { km: 40000 },
+  타이어: { km: 50000, months: 60 },
+  배터리: { km: 60000, months: 36 },
+  점화플러그: { km: 40000 },
+  LPG필터: { km: 20000 },
+  와이퍼: { months: 12 },
+};

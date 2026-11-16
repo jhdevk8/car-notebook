@@ -8,7 +8,7 @@
 
 - **주행거리**: 날짜별 계기판 숫자를 입력하면 구간 기간, 주행거리, 하루 평균 계산
 - **소모품 기록**: 종류, 제품명, 교체일, 주행거리, 메모 저장
-- **대시보드**: 소모품별 교체 횟수, 마지막 교체일, 교체 후 주행, 교체 이력
+- **대시보드**: 이번 달·월 평균·하루 평균 주행, 월별 주행거리와 누적 주행거리 그래프, 소모품별 권장 교체 주기 대비 상태와 교체 이력
 - **백업**: 기록을 JSON으로 내려받고, 현재 기록에 합쳐서 복원
 - **로그인 없이 시작**: 브라우저에 저장하다가, 로그인하면 계정으로 옮기기
 - **3D 차**: 손가락이나 마우스로 돌려 보고, 누르면 말랑하게 눌렸다가 튕겨 오르는 장난감 차
@@ -16,7 +16,7 @@
 
 ## 기술
 
-React, React Router, Vite, Tailwind CSS, React Three Fiber(Three.js), PWA(vite-plugin-pwa, Workbox), Supabase(PostgreSQL, Auth), Vercel
+React, React Router, Vite, Tailwind CSS, Recharts, React Three Fiber(Three.js), PWA(vite-plugin-pwa, Workbox), Supabase(PostgreSQL, Auth), Vercel
 
 ## 실행
 

@@ -20,10 +20,11 @@ export function TwoColumn({ layout = 'form', children }) {
   return <div className={`grid grid-cols-1 items-start gap-5 ${LAYOUTS[layout]}`}>{children}</div>;
 }
 
-// items: [{ label, value }]
+// items: [{ label, value }]. 4개면 폰에서 2줄, PC에서 1줄로 놓는다.
 export function StatList({ items }) {
+  const columns = items.length === 4 ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-3';
   return (
-    <dl className="grid grid-cols-3 gap-2">
+    <dl className={`grid gap-2 ${columns}`}>
       {items.map(({ label, value }) => (
         <div key={label} className="min-w-0 rounded-2xl bg-surface-2 px-2.5 py-2.5 sm:px-3">
           <dt className="text-[0.72rem] font-medium text-muted">{label}</dt>
